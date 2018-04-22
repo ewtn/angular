@@ -14,17 +14,16 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/libraries/jquery/js/jquery-2.1.1.min.js',
-      'src/libraries/angular/js/angular.min.js',
-      'src/libraries/angular/js/angular-mocks.js',
-      'src/libraries/angular/js/angular-sanitize.min.js',
-      'src/libraries/angular/js/angular-route.min.js',
-      'src/libraries/angular/js/ui-bootstrap-tpls-0.11.0.min.js',
-      'src/libraries/bootstrap/js/bootstrap.min.js',
-      'src/app.js',
-      'src/controllers/*.js',
-      'src/directives/*.js',
-      'src/services/*.js',
+      'src/libs/jquery/js/jquery-2.1.1.min.js',
+      'src/libs/angular/js/angular.min.js',
+      'src/libs/angular/js/angular-mocks.js',
+      'src/libs/angular/js/angular-sanitize.min.js',
+      'src/libs/angular/js/angular-route.min.js',
+      'src/libs/angular/js/ui-bootstrap-tpls-0.11.0.min.js',
+      'src/libs/bootstrap/js/bootstrap.min.js',
+      'src/*.js',
+      'src/spas/*.js',
+      'src/spas/**/*.js',
       'test/**/*.js'
     ],
 
@@ -38,14 +37,24 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'src/**/*.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+    
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
 
 
     // web server port
@@ -67,11 +76,13 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['Firefox'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: true,
+
+    plugins: ['karma-firefox-launcher']
   });
 };
