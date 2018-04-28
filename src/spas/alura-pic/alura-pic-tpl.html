@@ -1,0 +1,13 @@
+<div ng-controller="aluraPicController as vm">
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">Alura Pic</h1>
+		</div>
+		<meu-painel ng-repeat="foto in vm.fotos" 
+			ng-click="vm.ocultar($index)"
+			titulo="{{foto.titulo}}" 
+			url="{{foto.url}}" 
+			exibir="{{foto.exibir}}">
+		</meu-painel>
+	</div>
+</div>
