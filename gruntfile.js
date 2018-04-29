@@ -6,7 +6,6 @@ module.exports = function (grunt) {
         jshint: {
             allFiles: [
                 'src/*.js',
-                'src/spas/*.js',
                 'src/spas/**/*.js'
             ],
             options: {
@@ -28,7 +27,7 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: ['src/**/*.js', 'src/*.js', '!src/libs/**/*.js'],
+                src: ['src/*.js', 'src/spas/**/*.js', '!src/resources/**/*.js'],
                 dest: 'dist/assets/app.min.js'
             }
         },
@@ -37,7 +36,7 @@ module.exports = function (grunt) {
                 files: [{
                         expand: true,
                         cwd: 'src/',
-                        src: ['libs/**'],
+                        src: ['resources/libs/**'],
                         dest: 'dist/'
                     },
                     {
@@ -61,12 +60,12 @@ module.exports = function (grunt) {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
                 },
                 files: {
-                    'dist/assets/app.min.css': ['src/assets/**/*.css']
+                    'dist/assets/app.min.css': ['src/resources/css/*.css']
                 }
             }
         },
         watch: {
-            files: ['src/**/*.js', 'src/*.js'],
+            files: ['src/resources/**/*.js', 'src/*.js', 'src/spas/**/*.js'],
             tasks: ['uglify'],
             options: {
                 livereload: true

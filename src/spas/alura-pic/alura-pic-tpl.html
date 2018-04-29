@@ -1,13 +1,22 @@
-<div ng-controller="aluraPicController as vm">
+<div ng-controller="aluraPicController as vm" ng-init="vm.init()">
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="text-center">Alura Pic</h1>
 		</div>
-		<meu-painel ng-repeat="foto in vm.fotos" 
-			ng-click="vm.ocultar($index)"
-			titulo="{{foto.titulo}}" 
-			url="{{foto.url}}" 
-			exibir="{{foto.exibir}}">
-		</meu-painel>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<form>
+					<input ng-model="vm.filtro" ng-model-options="{ debounce: 500 }" class="form-control" placeholder="filtrar">
+				</form>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-2 painel-animado" ng-repeat="item in vm.fotos | filter:vm.filtro track by $index">
+				<lista-de-fotos item="item" click="vm.mostrar($index)" />
+			</div>
+		</div>
+		
 	</div>
 </div>

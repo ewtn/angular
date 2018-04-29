@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularAPP', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap', 'minhasDiretivas' ])
+angular.module('angularAPP', [ 'ngRoute', 'ngAnimate', 'minhasDiretivas', 'meusFiltros'])
 
 .config([ '$routeProvider', function($routeProvider) {
 	$routeProvider
