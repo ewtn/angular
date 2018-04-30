@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="col-md-12">
+		<label ng-if="!item.labelEditando"> {{item.label}} </label> 	
+		<input type="text" ng-model="item.label" ng-if="item.labelEditando">
+
+		<i class="far fa-edit" ng-if="!consulta && !item.labelEditando && item.editavel && item.tipo !== 3"
+			ng-click="item.labelEditando = !item.labelEditando"> 
+		</i> 
+		<i class="far fa-save" ng-if="!consulta && item.labelEditando && item.editavel"
+			ng-click="item.labelEditando = !item.labelEditando"> 
+		</i>
+	</div>
+
+	<div class="col-md-12">
+		<!-- item.tipo = 1 - campo de texto simples -->
+		<span ng-if="item.tipo === 1 && !item.editavel">{{item.valor}}</span>
+		<input type="text" id="{{$index}}" name="{{$index}}"
+			ng-model="item.valor" ng-value="item.valor" ng-if="item.tipo === 1 && item.editavel"
+			ng-disabled="!item.valueEditando">
+
+		<!-- item.tipo = 2 - campo de data -->
+		<span ng-if="item.tipo === 2 && !item.editavel">{{item.valor | formatarData}}</span>
+		<input type="text" id="{{$index}}" name="{{$index}}"
+			ng-model="item.valor" ng-value="item.valor | formatarData"
+			ng-if="item.tipo === 2 && item.editavel" ng-disabled="!item.valueEditando">
+
+		<!-- item.tipo = 3 - campo de data -->
+		<span ng-if="item.tipo === 3 && (consulta || !item.editavel)">{{item.valor.nome}}</span>
+		<select ng-if="item.tipo === 3 && (!consulta && item.editavel)" ng-model="item.valor">
+			<option ng-repeat="opcao in item.lista" ng-value="opcao">{{opcao.nome}}</option>
+		</select> 
+		
+		<i class="far fa-edit" ng-if="!consulta && !item.valueEditando && item.editavel"
+			ng-click="item.valueEditando = !item.valueEditando"> 
+		</i> 
+		<i class="far fa-save" ng-if="!consulta && item.valueEditando && item.editavel"
+			ng-click="item.valueEditando = !item.valueEditando">
+		</i> 
+		<i class="fas fa-exchange-alt fa-lg" ng-if="!consulta && item.interativo" 
+			ng-click="replicar(item)" title="Ao replicar herda as características do antigo.">
+		</i>
+	</div>
+</div>
+
+<br />

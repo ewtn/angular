@@ -1,6 +1,12 @@
 'use strict';
 
-angular.module('angularAPP', [ 'ngRoute', 'ngAnimate', 'minhasDiretivas', 'meusFiltros'])
+angular.module('angularAPP', [ 
+	'ngRoute', 
+	'ngAnimate', 
+	'informacoesComplementaresControllers',
+	'minhasDiretivas', 
+	'meusFiltros',
+	'utilsJS'])
 
 .config([ '$routeProvider', function($routeProvider) {
 	$routeProvider
@@ -10,7 +16,10 @@ angular.module('angularAPP', [ 'ngRoute', 'ngAnimate', 'minhasDiretivas', 'meusF
 		.when('/alura-pic', {
 			templateUrl : 'spas/alura-pic/alura-pic-tpl.html'
 		})
+		.when('/informacoes-complementares', {
+			templateUrl : 'spas/informacoes-complementares/informacoes-complementares-tpl.html'
+		})
 		.otherwise({
-			redirectTo : '/alura-pic'
+			redirectTo : '/informacoes-complementares'
 		});
 } ]);

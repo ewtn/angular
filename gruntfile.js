@@ -27,8 +27,8 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: ['src/*.js', 'src/spas/**/*.js', '!src/resources/**/*.js'],
-                dest: 'dist/assets/app.min.js'
+                src: ['src/*.js', 'src/spas/**/*.js'],
+                dest: 'dist/app.min.js'
             }
         },
         copy: {
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
 
     // Default task(s).
 
-    grunt.registerTask('default', ['jshint', 'connect', 'watch']);
+    grunt.registerTask('default', ['jshint', 'uglify', 'connect', 'watch']);
     grunt.registerTask('dist', ['jshint', 'uglify', 'cssmin', 'copy']);
     grunt.registerTask('test', ['karma']);
 
