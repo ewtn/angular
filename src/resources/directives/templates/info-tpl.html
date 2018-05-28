@@ -1,0 +1,40 @@
+<div ng-repeat="tipo in lista" class="col-md-12">
+
+	<span class="panel-title" style="font-weight: bold">
+		{{tipo.titulo.toUpperCase()}}
+	</span>
+	
+	<div class="col-md-12" ng-repeat="grupo in tipo.lista">
+		<div class="col-md-11 panel panel-default">
+			<span class="col-md-12" style="margin-top: 5px">
+				Grupo {{grupo.docs[0].grupo}}
+			</span>
+			
+			<div class="col-md-5" style="margin-top: 5px; margin-bottom: 5px" ng-repeat="item in grupo.docs">
+				<span class="col-md-5">
+					{{item.label.toUpperCase()}}
+				</span>
+				
+				<input type="text" 
+					class="col-md-5" 
+					placeholder="{{item.placeholder}}" 
+					style="{{item.style}}"
+					ng-model="item.value" 
+					ng-change="verificaBorda(grupo.docs)">
+				
+				<div class="col-md-2">
+					<i style="cursor: pointer;" 
+						class="far fa-copy" 
+						ng-if="$index === grupo.docs.length-1 && !grupo.jaRreplicado" 
+						ng-click="duplicar(grupo)">
+					</i>
+					<i style="cursor: pointer;" 
+						class="fas fa-trash-alt" 
+						ng-if="item.duplicado" 
+						ng-click="remover($index, grupo)">
+					</i>
+				</div>
+			</div>			
+		</div>		
+	</div>	
+</div>

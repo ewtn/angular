@@ -1,18 +1,7 @@
-<div ng-controller="informacoesComplementaresController as vm" ng-init="vm.init(false)" class="container">
+<div class="container">
 	<fieldset>
-		<legend class="text-center">Informações Complementares</legend>
+		<legend class="text-center" style="font-weight: bold">Informações Complementares</legend>
 		
-		<informacao-complementar 
-			ng-repeat="item in vm.lista track by $index" 
-			item="item" 
-			replicar="vm.replicarCampo(item)"
-			consulta="vm.isConsulta">
-		</informacao-complementar>
-		
-		<div class="row" >
-			<button type="button" class="btn btn-primary" ng-click="vm.incluirInformacoesComplementares()" ng-if="!vm.isConsulta">Salvar</button>
-			<button type="button" class="btn btn-primary" ng-click="vm.isConsulta = false" ng-if="vm.isConsulta">Alterar</button>
-			<button type="button" class="btn btn-danger" ng-click="vm.cancelar()" ng-if="!vm.isConsulta">Cancelar</button>
-		</div>
+		<info lista="lista"></info>
 	</fieldset>
 </div>
